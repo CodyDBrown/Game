@@ -4,7 +4,7 @@
 class Engine 
 {
    public :
-      TCODList<Actor *> actors;
+      std::vector<Actor *> actors;
       Actor *player;
       Map *map;
 
@@ -12,6 +12,20 @@ class Engine
       ~Engine();
       void update();
       void render();
+
+      int fovRadius;
+
+      enum GameStatus
+      {
+         STARTUP, 
+         IDLE,
+         NEW_TURN,
+         VICTORY,
+         DEFEAT
+      } gameStatus; 
+
+   private:
+      bool computeFov_;
 };
 
 extern Engine engine;
